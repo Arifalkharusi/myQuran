@@ -1,13 +1,135 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: myFont;
+  src: url(ScheherazadeNew-Regular.ttf);
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#root {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
+}
+
+p {
+  font-size: 40px;
+  font-family: myFont;
+  text-align: end;
+  max-width: 900px;
+}
+
+.ayah {
+  display: flex;
+  flex-direction: row-reverse;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  border-bottom: 1px dotted grey;
+}
+.ayah > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: row-reverse;
+}
+.number {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  position: relative;
+}
+.number img {
+  height: 100%;
+  width: 100%;
+}
+
+.number > div {
+  position: absolute;
+  font-size: 22px;
+}
+.play {
+  border: none;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: teal;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.play:hover {
+  filter: brightness(0.9);
+}
+.play:active {
+  box-shadow: none;
+  transform: translateY(3px);
+}
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+
+form label {
+  font-size: 30px;
+}
+form select {
+  height: 50px;
+  width: 200px;
+  background: rgb(209, 209, 209);
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+}
+form select:focus {
+  outline: none;
+}
+.loop-input {
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  padding: 5px;
+}
+@media (max-width: 768px) {
+  p {
+    font-size: 20px;
+  }
+  .ayah > div {
+    transform: scale(0.7);
+  }
 }

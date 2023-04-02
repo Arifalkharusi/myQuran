@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Ayah from "./Components/Ayah";
 import surahName from "./data/surah.json";
 
@@ -11,11 +11,11 @@ function App() {
 
   const num = (arr) => arr.split(" ")[0];
 
-  const main = () => {
+  const main = useCallback(() => {
     fetch(`http://api.alquran.cloud/v1/surah/${surah}`)
       .then((res) => res.json())
       .then((data) => setAyah(data.data.ayahs));
-  };
+  }, [surah]);
   // initial call
   useEffect(() => {
     firstCall.current && main();
@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
     main(); // fetches the surah
     setIsPlaying(false);
-  }, [surah, main]); // listens if surah is selected
+  }, [main]); // listens if surah is selected
 
   const playSurah = () => {
     if (!isPlaying) {

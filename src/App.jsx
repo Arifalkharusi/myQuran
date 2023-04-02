@@ -12,7 +12,7 @@ function App() {
   const num = (arr) => arr.split(" ")[0];
 
   const main = useCallback(() => {
-    fetch(`http://api.alquran.cloud/v1/surah/${surah}`)
+    fetch(`https://api.alquran.cloud/v1/surah/${surah}`)
       .then((res) => res.json())
       .then((data) => setAyah(data.data.ayahs));
   }, [surah]);

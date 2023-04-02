@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
     main(); // fetches the surah
     setIsPlaying(false);
-  }, [surah]); // listens if surah is selected
+  }, [surah, main]); // listens if surah is selected
 
   const playSurah = () => {
     if (!isPlaying) {

@@ -75,7 +75,7 @@ function App() {
           return <Ayah ayah={ayah} num={x.numberInSurah} ayahNum={x.number} />;
         };
 
-        if (i == 0) {
+        if (i === 0) {
           const firstAyah =
             x.text.length > 40
               ? x.text.split("").splice(39, x.text.length).join("")

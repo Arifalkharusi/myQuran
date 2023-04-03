@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import Ayah from "./Components/Ayah";
+import Ayah from "./Components/Ayah/Ayah";
 import surahName from "./data/surah.json";
+import Surah from "./Components/Surah/Surah";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   const firstCall = useRef(true);
@@ -8,8 +10,6 @@ function App() {
   const [surah, setSurah] = useState("1");
   const [isPlaying, setIsPlaying] = useState(false);
   const audioElem = useRef();
-
-  const num = (arr) => arr.split(" ")[0];
 
   const main = useCallback(() => {
     fetch(`https://api.alquran.cloud/v1/surah/${surah}`)
@@ -39,30 +39,17 @@ function App() {
       setIsPlaying(false);
     }
   };
+  const surrahSelect = (num) => {
+    setSurah(num);
+  };
 
-  return (
-    <div className="App">
+  let surahElement = (
+    <>
       <audio
         onEnded={() => setIsPlaying(false)}
         ref={audioElem}
-        src={`https://cdn.islamic.network/quran/audio-surah/128/ar.saudalshuraim/${num(
-          surah
-        )}.mp3`}
+        src={`https://cdn.islamic.network/quran/audio-surah/128/ar.ahmedalajmi/${surah}.mp3`}
       ></audio>
-      <form action="">
-        <label htmlFor="surah">Surah</label>
-        <select
-          id="surah"
-          value={surah}
-          onChange={(e) => setSurah(e.target.value)}
-        >
-          {surahName.map((x) => (
-            <option>
-              {x.number} - {x.name}
-            </option>
-          ))}
-        </select>
-      </form>
       <button onClick={playSurah} className="play">
         {!isPlaying ? (
           <i class="fa-solid fa-play"></i>
@@ -84,6 +71,24 @@ function App() {
         }
         return ayahFunc(x.text);
       })}
+    </>
+  );
+  let selectElement = (
+    <>
+      <h1>Surah</h1>
+      <div className="pick-surah">
+        {surahName.map((x) => (
+          <Surah data={x} select={surrahSelect} />
+        ))}
+      </div>
+    </>
+  );
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/" element={selectElement} />
+        <Route path="/surah" element={surahElement} />
+      </Routes>
     </div>
   );
 }

@@ -43,12 +43,14 @@ const Ayah = ({ ayah, num, ayahNum }) => {
       <audio
         onEnded={handleAudioEnded}
         ref={audioElem}
-        src={`https://cdn.islamic.network/quran/audio/64/ar.saoodshuraym/${ayahNum}.mp3`}
+        src={`https://cdn.islamic.network/quran/audio/128/ar.ahmedajamy/${ayahNum}.mp3`}
       ></audio>
-      <p>{ayah} </p>
-      <div>
+      <div className="right-sec">
+        <p>{ayah} </p>
+      </div>
+      <div className="left-sec">
         <div className="number">
-          <img src={require("../clipart1911133.png")} alt="" />
+          <img src={require("../../clipart1911133.png")} alt="" />
           <div>{numberConvert(String(num))}</div>
         </div>
         <input

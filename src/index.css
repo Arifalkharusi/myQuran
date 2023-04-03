@@ -14,6 +14,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 #root {
   width: 100%;
@@ -29,9 +30,12 @@ code {
 .App {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   gap: 20px;
+}
+h6 {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 p {
@@ -47,17 +51,25 @@ p {
   text-align: center;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 10px;
   width: 100%;
-  border-bottom: 1px dotted grey;
+  padding: 5px;
+  border-bottom: 1px dotted teal;
 }
-.ayah > div {
+.ayah .left-sec {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   flex-direction: row-reverse;
 }
+.ayah .right-sec {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  text-align: end;
+}
+
 .number {
   font-size: 20px;
   display: flex;
@@ -124,6 +136,56 @@ form select:focus {
   height: 50px;
   font-size: 30px;
   padding: 5px;
+}
+.pick-surah {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.surah {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  gap: 20px;
+  border-bottom: 1px solid darkgray;
+  cursor: pointer;
+}
+
+.surah .number {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.surah .name {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  min-width: 150px;
+}
+.surah .name .verses {
+  font-size: 12px;
+  color: darkgray;
+}
+.surah .arabic-name {
+  font-family: myFont;
+  font-size: 30px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  min-width: 100px;
+  color: rgb(90, 90, 90);
+}
+.surah:hover {
+  background: rgb(233, 233, 233);
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
 }
 @media (max-width: 768px) {
   p {

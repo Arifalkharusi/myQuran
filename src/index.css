@@ -63,10 +63,11 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 p {
-  font-size: 40px;
+  font-size: 30px;
   font-family: myFont;
   text-align: end;
   max-width: 900px;
+  width: 100%;
 }
 
 .ayah {

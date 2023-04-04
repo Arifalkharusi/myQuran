@@ -54,7 +54,7 @@ const Ayah = ({ ayah, num, ayahNum }) => {
           <div>{numberConvert(String(num))}</div>
         </div>
         <input
-          type="number"
+          type="tel"
           value={loopCount}
           onChange={(e) => setLoopCount(e.target.value)}
           className="loop-input"

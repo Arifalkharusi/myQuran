@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Ayah from "./Components/Ayah/Ayah";
 import surahName from "./data/surah.json";
 import Surah from "./Components/Surah/Surah";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 
 function App() {
   const firstCall = useRef(true);
@@ -50,13 +50,19 @@ function App() {
         ref={audioElem}
         src={`https://cdn.islamic.network/quran/audio-surah/128/ar.ahmedalajmi/${surah}.mp3`}
       ></audio>
-      <button onClick={playSurah} className="play">
-        {!isPlaying ? (
-          <i class="fa-solid fa-play"></i>
-        ) : (
-          <i class="fa-solid fa-pause"></i>
-        )}
-      </button>
+      <div className="top-sec">
+        <Link to="/" className="link back">
+          <i class="fa-solid fa-arrow-left"></i>
+        </Link>
+        <button onClick={playSurah} className="play">
+          {!isPlaying ? (
+            <i class="fa-solid fa-play"></i>
+          ) : (
+            <i class="fa-solid fa-pause"></i>
+          )}
+        </button>
+      </div>
+      <div className="top-bar"></div>
       {ayah.map((x, i) => {
         const ayahFunc = (ayah) => {
           return <Ayah ayah={ayah} num={x.numberInSurah} ayahNum={x.number} />;

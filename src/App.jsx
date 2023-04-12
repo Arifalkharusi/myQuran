@@ -7,15 +7,21 @@ import { Route, Routes, Link } from "react-router-dom";
 function App() {
   const firstCall = useRef(true);
   const [ayah, setAyah] = useState([]);
+  const [translation, setTranslation] = useState([]);
   const [surah, setSurah] = useState("1");
   const [isPlaying, setIsPlaying] = useState(false);
+  const [tranOn, setTranOn] = useState(false);
   const audioElem = useRef();
 
   const main = useCallback(() => {
     fetch(`https://api.alquran.cloud/v1/surah/${surah}`)
       .then((res) => res.json())
       .then((data) => setAyah(data.data.ayahs));
+    fetch(`https://api.alquran.cloud/v1/surah/${surah}/en.yusufali`)
+      .then((res) => res.json())
+      .then((data) => setTranslation(data.data.ayahs));
   }, [surah]);
+
   // initial call
   useEffect(() => {
     firstCall.current && main();
@@ -54,6 +60,9 @@ function App() {
         <Link to="/" className="link back">
           <i class="fa-solid fa-arrow-left"></i>
         </Link>
+        <button onClick={() => setTranOn(!tranOn)} className="play">
+          En.
+        </button>
         <button onClick={playSurah} className="play">
           {!isPlaying ? (
             <i class="fa-solid fa-play"></i>
@@ -65,7 +74,14 @@ function App() {
       <div className="top-bar"></div>
       {ayah.map((x, i) => {
         const ayahFunc = (ayah) => {
-          return <Ayah ayah={ayah} num={x.numberInSurah} ayahNum={x.number} />;
+          return (
+            <Ayah
+              ayah={ayah}
+              translation={tranOn && translation[i]?.text}
+              num={x.numberInSurah}
+              ayahNum={x.number}
+            />
+          );
         };
 
         if (i === 0) {

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-const Ayah = ({ ayah, num, ayahNum }) => {
+const Ayah = ({ ayah, num, ayahNum, translation }) => {
   const audioElem = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   const [loopCount, setLoopCount] = useState(0);
@@ -47,6 +47,7 @@ const Ayah = ({ ayah, num, ayahNum }) => {
       ></audio>
       <div className="right-sec">
         <p>{ayah} </p>
+        <div>{translation}</div>
       </div>
       <div className="left-sec">
         <div className="number">

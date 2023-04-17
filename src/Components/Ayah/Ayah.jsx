@@ -39,7 +39,7 @@ const Ayah = ({ ayah, num, ayahNum, translation }) => {
   };
 
   return (
-    <div className="ayah">
+    <div className={`ayah ayah-${ayahNum} ${num === 1 && "border"}`}>
       <audio
         onEnded={handleAudioEnded}
         ref={audioElem}
@@ -51,7 +51,7 @@ const Ayah = ({ ayah, num, ayahNum, translation }) => {
       </div>
       <div className="left-sec">
         <div className="number">
-          <img src={require("../../clipart1911133.png")} alt="" />
+          <img src={require("../../icons8-frame-64.png")} alt="" />
           <div>{numberConvert(String(num))}</div>
         </div>
         <input

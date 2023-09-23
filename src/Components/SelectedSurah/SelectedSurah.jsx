@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Ayah from "../Ayah/Ayah";
-import { Link } from "react-router-dom";
+import data from "../../data/surah.json";
 
-const SelectedSurah = ({ surah }) => {
+const SelectedSurah = ({ surah, changeSurah }) => {
   const firstCall = useRef(true);
   const [ayah, setAyah] = useState([]);
   const [translation, setTranslation] = useState([]);
+
+  const [repeat, setRepeat] = useState(0);
+  const [loopCount, setLoopCount] = useState(repeat);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [tranOn, setTranOn] = useState(false);
@@ -23,6 +26,17 @@ const SelectedSurah = ({ surah }) => {
         setTranslation(data.data.ayahs);
       });
   }, [surah]);
+
+  useEffect(() => {
+    setLoopCount(repeat);
+  }, [repeat]);
+
+  useEffect(() => {
+    scrolled("select");
+    audioElem.current.play();
+    setLoopCount(repeat);
+    setIsPlaying(true);
+  }, [currentAyah]);
 
   // initial call
   useEffect(() => {
@@ -52,26 +66,46 @@ const SelectedSurah = ({ surah }) => {
     const allAyah = document.querySelectorAll(`.ayah`);
     allAyah.forEach((x) => x.classList.remove("border"));
 
-    if (pos === "start") {
-      const readingAyah = document.querySelector(`.ayah-${currentAyah + 1}`);
-      readingAyah.scrollIntoView({ behavior: "smooth" });
-      readingAyah.classList.add("border");
+    if (pos === "select") {
+      const readingAyah = document.querySelector(`.ayah-${currentAyah}`);
+      readingAyah && readingAyah.scrollIntoView({ behavior: "smooth" });
+      readingAyah && readingAyah.classList.add("border");
+
+      return;
     }
+
+    const readingAyah = document.querySelector(
+      `.ayah-${pos === "start" ? currentAyah + 1 : ayah[0].number}`
+    );
+    readingAyah.scrollIntoView({ behavior: "smooth" });
+    readingAyah.classList.add("border");
   };
 
   const handleAudioEnded = () => {
-    if (currentAyah < ayah[ayah.length - 1].number) {
-      scrolled("start");
+    let lastAyah = currentAyah === ayah[ayah.length - 1].number;
+    setLoopCount((prev) => prev - 1);
+
+    if (loopCount < 2) {
+      !lastAyah && scrolled("start");
       setCurrentAyah(currentAyah + 1);
-      setTimeout(() => {
-        audioElem.current.play();
-      }, 0);
-    } else {
+      setLoopCount(repeat);
+    }
+
+    setTimeout(() => {
+      audioElem.current.play();
+    }, 0);
+
+    if (loopCount < 2 && lastAyah) {
+      changeSurah(String(+surah + 1));
       scrolled("finish");
-      setIsPlaying(false);
       setCurrentAyah(ayah[0].number);
     }
   };
+
+  const currHandler = (e) => {
+    setCurrentAyah(e);
+  };
+
   return (
     <>
       <audio
@@ -80,19 +114,35 @@ const SelectedSurah = ({ surah }) => {
         src={`https://cdn.islamic.network/quran/audio/128/ar.ahmedajamy/${currentAyah}.mp3`}
       ></audio>
       <div className="top-sec">
-        <Link to="/" className="link back">
-          <i class="fa-solid fa-arrow-left"></i>
-        </Link>
-        <button onClick={playSurah} className="play">
-          {!isPlaying ? (
-            <i class="fa-solid fa-play"></i>
-          ) : (
-            <i class="fa-solid fa-pause"></i>
-          )}
-        </button>
-        <button onClick={() => setTranOn(!tranOn)} className="play">
-          En.
-        </button>
+        <div>
+          <select
+            name=""
+            id=""
+            value={surah}
+            onChange={(e) => changeSurah(e.target.value)}
+          >
+            {data.map((x) => (
+              <option
+                value={x.number}
+              >{`${x.number} ${x.arabicName} ${x.name}`}</option>
+            ))}
+          </select>
+          <input
+            type="tel"
+            onChange={(e) => setRepeat(e.target.value)}
+            className="repeat"
+          />
+        </div>
+        <div>
+          <button onClick={playSurah} className="play">
+            {!isPlaying ? (
+              <i class="fa-solid fa-play"></i>
+            ) : (
+              <i class="fa-solid fa-pause"></i>
+            )}
+          </button>
+          <button onClick={() => setTranOn(!tranOn)}>En.</button>
+        </div>
       </div>
       <div className="ayah-sec">
         {ayah.map((x, i) => {
@@ -103,6 +153,7 @@ const SelectedSurah = ({ surah }) => {
                 translation={tranOn && translation[i]?.text}
                 num={x.numberInSurah}
                 ayahNum={x.number}
+                curr={currHandler}
               />
             );
           };

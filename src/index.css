@@ -10,18 +10,10 @@
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 20px;
   font-family: Arial, Helvetica, sans-serif;
 }
-#root {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -29,16 +21,14 @@ code {
 
 .App {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
 }
-h6 {
-  font-family: Arial, Helvetica, sans-serif;
-}
+
 .ayah-sec {
   margin-bottom: 100px;
+  max-width: 900px;
+  width: 100%;
 }
 .top-sec {
   position: fixed;
@@ -48,47 +38,65 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 900px;
   width: 100%;
   padding: 20px;
   box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.15);
 }
-.top-bar {
+
+.top-sec > div {
+  display: flex;
+}
+
+.top-sec button {
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  color: black;
 }
 
-i {
-  color: rgb(140, 89, 208);
-}
-.fa-arrow-left {
-  font-size: 30px;
-  text-shadow: 0 0 5px;
-  color: rgb(140, 89, 208);
+.top-sec button:active {
+  transform: scale(95%);
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.play {
+  background: rgb(123, 229, 123);
 }
-p {
-  font-size: 30px;
+
+.repeat {
+  width: 50px;
+  padding: 5px;
+}
+.repeat:focus {
+  outline: none;
+}
+
+.a-para {
+  font-size: 1.5rem;
   font-family: myFont;
   text-align: end;
-  max-width: 900px;
-  width: 100%;
+  color: #383838;
+  display: flex;
+  flex-direction: column;
+}
+
+.number {
+  font-size: 1rem;
 }
 
 .ayah {
   display: flex;
   flex-direction: column-reverse;
-  align-items: flex-end;
-  justify-content: flex-end;
-  gap: 10px;
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border-bottom: 1px dotted #8c59d0;
+  padding: 0px 10px;
+
+  cursor: pointer;
 }
 .ayah .left-sec {
   display: flex;
@@ -98,107 +106,42 @@ p {
   flex-direction: row-reverse;
 }
 
+.translation {
+  margin-top: 10px;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+.t-number {
+  background: rgb(206, 206, 206);
+  padding: 5px;
+  border-radius: 50%;
+}
+
 .ayah .right-sec {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
   width: 100%;
-}
-.number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  width: 40px;
-  position: relative;
-}
-.number img {
-  height: 100%;
-  width: 100%;
-}
-
-.number > div {
-  position: absolute;
-}
-.play {
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  color: #8c59d0;
-}
-
-.play:active {
-  box-shadow: none;
-  transform: translateY(3px);
-}
-
-.loop-input {
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  padding: 5px;
-  background: rgb(226, 226, 226);
-  border: none;
-}
-.loop-input:focus {
-  outline: none;
-}
-.pick-surah {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.surah {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 100%;
-  gap: 20px;
-  border-bottom: 1px solid darkgray;
-  cursor: pointer;
-}
-
-.surah .number {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.surah .name {
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 150px;
-}
-.surah .name .verses {
-  font-size: 12px;
-  color: darkgray;
-}
-.surah .arabic-name {
-  font-family: myFont;
-  font-size: 30px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  min-width: 100px;
-  color: rgb(140, 89, 208);
-}
-.surah:hover {
-  background: rgb(233, 233, 233);
-}
-
-.link {
-  text-decoration: none;
-  color: inherit;
 }
 
 .border {
-  border: 2px solid rgb(140, 89, 208);
-  border-radius: 5px;
+  background: rgb(248, 253, 248);
+  border-top: solid rgb(222, 252, 177) 2px;
+  border-bottom: solid rgb(222, 252, 177) 2px;
+}
+
+.pick {
+  display: flex;
+  gap: 20px;
+  color: red;
+}
+
+@media (max-width: 500px) {
+  .top-sec {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .ayah-sec {
+    margin-bottom: 150px;
+  }
 }

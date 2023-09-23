@@ -27,16 +27,25 @@ const SelectedSurah = ({ surah, changeSurah }) => {
       });
   }, [surah]);
 
+  const scroll = useCallback(() => {
+    const allAyah = document.querySelectorAll(`.ayah`);
+    allAyah.forEach((x) => x.classList.remove("border"));
+
+    const readingAyah = document.querySelector(`.ayah-${currentAyah}`);
+    readingAyah && readingAyah.scrollIntoView({ behavior: "smooth" });
+    readingAyah && readingAyah.classList.add("border");
+  }, [currentAyah]);
+
   useEffect(() => {
     setLoopCount(repeat);
   }, [repeat]);
 
   useEffect(() => {
-    scrolled("select");
     audioElem.current.play();
     setLoopCount(repeat);
+    scroll();
     setIsPlaying(true);
-  }, [currentAyah]);
+  }, [currentAyah, repeat, scroll]);
 
   // initial call
   useEffect(() => {
@@ -65,14 +74,6 @@ const SelectedSurah = ({ surah, changeSurah }) => {
   const scrolled = (pos) => {
     const allAyah = document.querySelectorAll(`.ayah`);
     allAyah.forEach((x) => x.classList.remove("border"));
-
-    if (pos === "select") {
-      const readingAyah = document.querySelector(`.ayah-${currentAyah}`);
-      readingAyah && readingAyah.scrollIntoView({ behavior: "smooth" });
-      readingAyah && readingAyah.classList.add("border");
-
-      return;
-    }
 
     const readingAyah = document.querySelector(
       `.ayah-${pos === "start" ? currentAyah + 1 : ayah[0].number}`

@@ -74,13 +74,12 @@ body {
   width: 100%;
   padding: 10px;
   height: 40px;
-  border: 2px solid black;
+  border: 1px solid black;
+  border-radius: 0;
   --webkit-appearance: none;
   --moz-appearance: none;
-}
-
-.top-sec select {
   background: white;
+  color: black;
 }
 
 .top-sec select:focus {

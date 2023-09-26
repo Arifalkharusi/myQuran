@@ -1,0 +1,103 @@
+[
+  {
+    "identifier": "ar.abdulbasitmurattal",
+    "channel": "192",
+    "englishName": "Abdul Basit"
+  },
+  {
+    "identifier": "ar.abdullahbasfar",
+    "channel": "192",
+    "englishName": "Abdullah Basfar"
+  },
+  {
+    "identifier": "ar.abdurrahmaansudais",
+    "channel": "192",
+    "englishName": "Abdurrahmaan As-Sudais"
+  },
+  {
+    "identifier": "ar.abdulsamad",
+    "channel": "64",
+    "englishName": "Abdul Samad"
+  },
+  {
+    "identifier": "ar.shaatree",
+    "channel": "64",
+    "englishName": "Abu Bakr Ash-Shaatree"
+  },
+  {
+    "identifier": "ar.ahmedajamy",
+    "channel": "128",
+    "englishName": "Ahmed ibn Ali al-Ajamy"
+  },
+  {
+    "identifier": "ar.alafasy",
+    "channel": "128",
+    "englishName": "Alafasy"
+  },
+  {
+    "identifier": "ar.hanirifai",
+    "channel": "64",
+    "englishName": "Hani Rifai"
+  },
+  {
+    "identifier": "ar.husary",
+    "channel": "64",
+    "englishName": "Husary"
+  },
+  {
+    "identifier": "ar.husarymujawwad",
+    "channel": "128",
+    "englishName": "Husary (Mujawwad)"
+  },
+  {
+    "identifier": "ar.hudhaify",
+    "channel": "128",
+    "englishName": "Hudhaify"
+  },
+  {
+    "identifier": "ar.ibrahimakhbar",
+    "channel": "32",
+    "englishName": "Ibrahim Akhdar"
+  },
+  {
+    "identifier": "ar.mahermuaiqly",
+    "channel": "128",
+    "englishName": "Maher Al Muaiqly"
+  },
+  {
+    "identifier": "ar.minshawi",
+    "channel": "128",
+    "englishName": "Minshawi"
+  },
+  {
+    "identifier": "ar.minshawimujawwad",
+    "channel": "64",
+    "englishName": "Minshawy (Mujawwad)"
+  },
+  {
+    "identifier": "ar.muhammadayyoub",
+    "channel": "128",
+    "englishName": "Muhammad Ayyoub"
+  },
+  {
+    "identifier": "ar.muhammadjibreel",
+    "channel": "128",
+    "englishName": "Muhammad Jibreel"
+  },
+  {
+    "identifier": "ar.saoodshuraym",
+    "channel": "64",
+    "englishName": "Saood bin Ibraaheem Ash-Shuraym"
+  },
+  {
+    "identifier": "ar.parhizgar",
+    "channel": "48",
+    "englishName": "Parhizgar"
+  },
+
+  {
+    "identifier": "ar.aymanswoaid",
+    "channel": "64",
+    "englishName": "Ayman Sowaid"
+  }
+]

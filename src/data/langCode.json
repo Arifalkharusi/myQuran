@@ -1,0 +1,190 @@
+[
+  {
+    "name": "Amharic",
+    "code": "am"
+  },
+  {
+    "name": "Arabic",
+    "code": "ar"
+  },
+  {
+    "name": "Azerbaijani",
+    "code": "az"
+  },
+  {
+    "name": "Bashkir",
+    "code": "ba"
+  },
+  {
+    "name": "Berber",
+    "code": "ber"
+  },
+  {
+    "name": "Bulgarian",
+    "code": "bg"
+  },
+  {
+    "name": "Bengali",
+    "code": "bn"
+  },
+  {
+    "name": "Bosnian",
+    "code": "bs"
+  },
+  {
+    "name": "Czech",
+    "code": "cs"
+  },
+  {
+    "name": "German",
+    "code": "de"
+  },
+  {
+    "name": "Divehi",
+    "code": "dv"
+  },
+  {
+    "name": "English",
+    "code": "en"
+  },
+  {
+    "name": "Spanish",
+    "code": "es"
+  },
+  {
+    "name": "Persian",
+    "code": "fa"
+  },
+  {
+    "name": "French",
+    "code": "fr"
+  },
+  {
+    "name": "Hausa",
+    "code": "ha"
+  },
+  {
+    "name": "Hindi",
+    "code": "hi"
+  },
+  {
+    "name": "Indonesian",
+    "code": "id"
+  },
+  {
+    "name": "Italian",
+    "code": "it"
+  },
+  {
+    "name": "Japanese",
+    "code": "ja"
+  },
+  {
+    "name": "Korean",
+    "code": "ko"
+  },
+  {
+    "name": "Kurdish",
+    "code": "ku"
+  },
+  {
+    "name": "Malayalam",
+    "code": "ml"
+  },
+  {
+    "name": "Malay",
+    "code": "ms"
+  },
+  {
+    "name": "Burmese",
+    "code": "my"
+  },
+  {
+    "name": "Dutch",
+    "code": "nl"
+  },
+  {
+    "name": "Norwegian",
+    "code": "no"
+  },
+  {
+    "name": "Polish",
+    "code": "pl"
+  },
+  {
+    "name": "Pashto",
+    "code": "ps"
+  },
+  {
+    "name": "Portuguese",
+    "code": "pt"
+  },
+  {
+    "name": "Romanian",
+    "code": "ro"
+  },
+  {
+    "name": "Russian",
+    "code": "ru"
+  },
+  {
+    "name": "Sindhi",
+    "code": "sd"
+  },
+  {
+    "name": "Sinhala",
+    "code": "si"
+  },
+  {
+    "name": "Somali",
+    "code": "so"
+  },
+  {
+    "name": "Albanian",
+    "code": "sq"
+  },
+  {
+    "name": "Swedish",
+    "code": "sv"
+  },
+  {
+    "name": "Swahili",
+    "code": "sw"
+  },
+  {
+    "name": "Tamil",
+    "code": "ta"
+  },
+  {
+    "name": "Tajik",
+    "code": "tg"
+  },
+  {
+    "name": "Thai",
+    "code": "th"
+  },
+  {
+    "name": "Turkish",
+    "code": "tr"
+  },
+  {
+    "name": "Tatar",
+    "code": "tt"
+  },
+  {
+    "name": "Uighur",
+    "code": "ug"
+  },
+  {
+    "name": "Urdu",
+    "code": "ur"
+  },
+  {
+    "name": "Uzbek",
+    "code": "uz"
+  },
+  {
+    "name": "Chinese",
+    "code": "zh"
+  }
+]

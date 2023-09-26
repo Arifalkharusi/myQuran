@@ -13,7 +13,7 @@ const Ayah = ({ ayah, num, ayahNum, translation, curr }) => {
   return (
     <div
       className={`ayah ayah-${ayahNum} ${num === 1 && "border"}`}
-      onDoubleClick={() => curr(ayahNum)}
+      onClick={() => curr(ayahNum)}
     >
       <div className="right-sec">
         <div className="a-para">
@@ -24,7 +24,7 @@ const Ayah = ({ ayah, num, ayahNum, translation, curr }) => {
           className="translation"
           style={{ display: translation ? "block" : "none" }}
         >
-          <span className="t-number">{num}</span> {translation}
+          <div className="t-number">{num}</div> {translation}
         </div>
       </div>
       <div className="left-sec"></div>

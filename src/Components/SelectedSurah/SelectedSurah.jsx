@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Ayah from "../Ayah/Ayah";
 import data from "../../data/surah.json";
+import reciter from "../../data/reciter.json";
+import translations from "../../data/translation.json";
+import lang from "../../data/langCode.json";
 
 const SelectedSurah = ({ surah, changeSurah }) => {
   const firstCall = useRef(true);
@@ -9,6 +12,9 @@ const SelectedSurah = ({ surah, changeSurah }) => {
 
   const [repeat, setRepeat] = useState(0);
   const [loopCount, setLoopCount] = useState(repeat);
+  const [selReciter, setSelReciter] = useState(0);
+  const [selLang, setSelLang] = useState("en.yusufali");
+  const [settings, setSettings] = useState(false);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [tranOn, setTranOn] = useState(false);
@@ -18,12 +24,9 @@ const SelectedSurah = ({ surah, changeSurah }) => {
   const main = useCallback(() => {
     fetch(`https://api.alquran.cloud/v1/surah/${surah}`)
       .then((res) => res.json())
-      .then((data) => setAyah(data.data.ayahs));
-    fetch(`https://api.alquran.cloud/v1/surah/${surah}/en.yusufali`)
-      .then((res) => res.json())
       .then((data) => {
+        setAyah(data.data.ayahs);
         setCurrentAyah(data.data.ayahs[0].number);
-        setTranslation(data.data.ayahs);
       });
   }, [surah]);
 
@@ -37,6 +40,14 @@ const SelectedSurah = ({ surah, changeSurah }) => {
   }, [currentAyah]);
 
   useEffect(() => {
+    fetch(`https://api.alquran.cloud/v1/surah/${surah}/${selLang}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTranslation(data.data.ayahs);
+      });
+  }, [selLang, surah]);
+
+  useEffect(() => {
     setLoopCount(repeat);
   }, [repeat]);
 
@@ -45,7 +56,7 @@ const SelectedSurah = ({ surah, changeSurah }) => {
     setLoopCount(repeat);
     scroll();
     setIsPlaying(true);
-  }, [currentAyah, repeat, scroll]);
+  }, [currentAyah, repeat, scroll, selReciter]);
 
   // initial call
   useEffect(() => {
@@ -97,7 +108,7 @@ const SelectedSurah = ({ surah, changeSurah }) => {
     }, 0);
 
     if (loopCount < 2 && lastAyah) {
-      changeSurah(String(+surah + 1));
+      surah === "114" ? changeSurah("1") : changeSurah(String(+surah + 1));
       scrolled("finish");
       setCurrentAyah(ayah[0].number);
     }
@@ -112,40 +123,97 @@ const SelectedSurah = ({ surah, changeSurah }) => {
       <audio
         onEnded={handleAudioEnded}
         ref={audioElem}
-        src={`https://cdn.islamic.network/quran/audio/128/ar.ahmedajamy/${currentAyah}.mp3`}
+        src={`https://cdn.islamic.network/quran/audio/${reciter[selReciter].channel}/${reciter[selReciter].identifier}/${currentAyah}.mp3`}
       ></audio>
-      <div className="top-sec">
+      <div
+        className="top-sec"
+        style={{
+          transform: `${settings ? "translateY(240px)" : "translateY(0px)"}`,
+        }}
+      >
+        <i
+          className="fa-solid fa-angle-down"
+          style={{
+            transform: `${settings ? "rotate(180deg)" : "rotate(0deg)"}`,
+          }}
+          onClick={() => setSettings((prev) => !prev)}
+        ></i>
         <div>
-          <select
-            name=""
-            id=""
-            value={surah}
-            onChange={(e) => changeSurah(e.target.value)}
-          >
-            {data.map((x) => (
-              <option
-                value={x.number}
-              >{`${x.number} ${x.arabicName} ${x.name}`}</option>
-            ))}
-          </select>
-          <input
-            type="tel"
-            onChange={(e) => setRepeat(e.target.value)}
-            className="repeat"
-          />
+          <div>
+            <button onClick={playSurah} className="play">
+              {!isPlaying ? (
+                <i class="fa-solid fa-play"></i>
+              ) : (
+                <i class="fa-solid fa-pause"></i>
+              )}
+            </button>
+            <button className="tr" onClick={() => setTranOn((prev) => !prev)}>
+              Tr.
+            </button>
+          </div>
         </div>
         <div>
-          <button onClick={playSurah} className="play">
-            {!isPlaying ? (
-              <i class="fa-solid fa-play"></i>
-            ) : (
-              <i class="fa-solid fa-pause"></i>
-            )}
-          </button>
-          <button onClick={() => setTranOn(!tranOn)}>En.</button>
+          <div>
+            <label htmlFor="surah">Surah: </label>
+            <select
+              name=""
+              id="surah"
+              value={surah}
+              onChange={(e) => changeSurah(e.target.value)}
+            >
+              {data.map((x) => (
+                <option
+                  value={x.number}
+                >{`${x.number} ${x.arabicName} ${x.name}`}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="repeat">Repeat: </label>
+            <input
+              id="repeat"
+              type="tel"
+              onChange={(e) => setRepeat(e.target.value)}
+              className="repeat"
+            />
+          </div>
+          <div>
+            <label htmlFor="reciter">Reciter: </label>
+            <select
+              name=""
+              id="reciter"
+              value={selReciter}
+              onChange={(e) => setSelReciter(e.target.value)}
+            >
+              {reciter.map((x, i) => (
+                <option value={i}>{`${i + 1}. ${x.englishName}`}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="translator">Translator: </label>
+            <select
+              name=""
+              id="translator"
+              value={selLang}
+              onChange={(e) => setSelLang(e.target.value)}
+            >
+              {lang.map((x) => (
+                <optgroup label={x.name}>
+                  {translations.map(
+                    (e) =>
+                      e.language === x.code && (
+                        <option value={e.identifier}>{e.englishName}</option>
+                      )
+                  )}
+                </optgroup>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
       <div className="ayah-sec">
+        <div className="bismillah">بِسْمِ ٱللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
         {ayah.map((x, i) => {
           const ayahFunc = (ayah) => {
             return (

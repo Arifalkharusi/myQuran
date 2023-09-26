@@ -73,7 +73,20 @@ body {
 .top-sec select {
   width: 100%;
   padding: 10px;
+  height: 40px;
+  border: 2px solid black;
+  --webkit-appearance: none;
+  --moz-appearance: none;
 }
+
+.top-sec select {
+  background: white;
+}
+
+.top-sec select:focus {
+  outline: none;
+}
+
 .top-sec label {
   flex-basis: 30%;
   font-weight: bold;

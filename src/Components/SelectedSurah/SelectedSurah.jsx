@@ -128,7 +128,7 @@ const SelectedSurah = ({ surah, changeSurah }) => {
       <div
         className="top-sec"
         style={{
-          transform: `${settings ? "translateY(240px)" : "translateY(0px)"}`,
+          transform: `${settings ? "translateY(270px)" : "translateY(0px)"}`,
         }}
       >
         <i

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import Ayah from "../Ayah/Ayah";
-import data from "../../data/surah.json";
-import reciter from "../../data/reciter.json";
-import translations from "../../data/translation.json";
-import lang from "../../data/langCode.json";
+import Ayah from "./Ayah";
+import data from "../data/surah.json";
+import reciter from "../data/reciter.json";
+import translations from "../data/translation.json";
+import lang from "../data/langCode.json";
 
 const SelectedSurah = ({ surah, changeSurah }) => {
   const firstCall = useRef(true);

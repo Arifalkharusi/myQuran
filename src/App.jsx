@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SelectedSurah from "./Components/SelectedSurah/SelectedSurah";
+import SelectedSurah from "./Components/SelectedSurah";
 
 function App() {
   const [surah, setSurah] = useState("1");
